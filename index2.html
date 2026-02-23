@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sinchana K Rao — Portfolio</title>
+  <meta name="description" content="Portfolio of Sinchana K Rao — Creative Computer Science Engineering Student" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-start: #0a0810;    
+      --bg-mid:   #160b10;      
+      --rose-1:   rgba(255,153,178,0.14);
+      --rose-2:   rgba(255,122,162,0.12);
+      --card-bg:  rgba(10,10,12,0.76);
+      --card-border: rgba(255,160,190,0.12);
+      --muted:    #a6b3c0;
+      --text:     #f1f6fb;
+      --accent:   linear-gradient(90deg,#ff9dbd,#ff7aa2,#ffc7d6);
+      --accent-flat:#ff8fb3;
+      --glass:    rgba(255,255,255,0.03);
+      --glass-2:  rgba(255,180,200,0.03);
+      --radius:   16px;
+      --shadow:   0 14px 40px rgba(5,3,8,0.6);
+      --maxw:     1100px;
+      --gap:      22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      background: linear-gradient(135deg, var(--rose-1) 0%, rgba(16,9,12,0.85) 35%, var(--bg-mid) 100%);
+      background-attachment: fixed;
+      padding:36px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:100vh;
+    }
+
+    .bg-particles{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      overflow:hidden;
+    }
+    .bg-particles::after{
+      content:"";
+      position:absolute;
+      left:-10%;
+      top:-20%;
+      width:140%;
+      height:140%;
+      background:
+        radial-gradient(800px 400px at 10% 10%, rgba(255,138,168,0.06), transparent 10%),
+        radial-gradient(700px 350px at 90% 90%, rgba(255,200,220,0.04), transparent 12%);
+      filter: blur(40px) saturate(120%);
+      transform: translateZ(0);
+      animation: floatSlow 12s linear infinite;
+    }
+    @keyframes floatSlow {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-24px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    .container{
+      position:relative;
+      z-index:2;
+      max-width:var(--maxw);
+      width:100%;
+    }
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;gap:16px;align-items:center}
+    .logo{
+      width:72px;height:72px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#071027;
+      background: linear-gradient(135deg,var(--accent-flat),#bf8bff);
+      box-shadow: 0 10px 30px rgba(255,140,170,0.12), inset 0 -8px 18px rgba(255,255,255,0.02);
+      font-family: "Playfair Display", serif;
+      font-size:22px;
+    }
+    h1{margin:0;font-size:18px;letter-spacing:0.6px}
+    .subtitle{color:var(--muted);margin-top:6px;font-size:13px}
+    .contact-inline{color:var(--muted);font-size:13px;margin-top:6px;line-height:1.1}
+
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:var(--text);text-decoration:none;font-weight:600;cursor:pointer;
+    }
+    .btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.03)}
+    .btn.resume{background:linear-gradient(90deg,#ffd9e6,#ffc7dc);color:#071027;border:none;box-shadow:0 8px 26px rgba(255,155,185,0.12)}
+
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:var(--gap);margin-top:26px}
+    .card{
+      background: linear-gradient(180deg, rgba(8,9,12,0.74), rgba(12,10,12,0.86));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow: var(--shadow);
+      border:1px solid var(--card-border);
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .profile-row{display:flex;gap:18px;align-items:center}
+    .avatar{
+      width:124px;height:124px;border-radius:16px;object-fit:cover;border:3px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 30px rgba(6,6,8,0.6); background: linear-gradient(135deg,#2b1a1f, #321726);
+      display:block;
+    }
+    .avatar.fallback{display:flex;align-items:center;justify-content:center;font-family:"Playfair Display";font-weight:700;color:#071027;background:linear-gradient(135deg,#ff9dbd,#c79bff);width:124px;height:124px;border-radius:16px}
+
+    .name{font-weight:700;color:var(--accent-flat);font-size:20px}
+    .role{color:var(--muted);margin-top:6px}
+
+    .section-title{
+      font-weight:700;margin-bottom:8px;
+      background:var(--accent);
+      background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      font-size:15px;
+    }
+    .lead{color:var(--muted);margin-top:8px}
+
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .chip{
+      padding:8px 12px;border-radius:999px;font-size:13px;color:var(--text);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.02);
+      box-shadow: inset 0 -8px 20px rgba(0,0,0,0.25);
+    }
+
+    ul{margin:8px 0 0 18px;color:var(--muted)}
+
+    .socials{display:flex;gap:10px;margin-top:12px}
+    .socials a{
+      display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;
+      text-decoration:none;color:var(--text);font-size:18px;border:1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .socials a:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+    aside .card{display:flex;flex-direction:column;gap:12px}
+
+    .contact-row{color:var(--muted);font-size:14px}
+    .resume-wrap{display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.0));border:1px solid rgba(255,160,190,0.04)}
+
+    footer{margin-top:24px;text-align:center;color:var(--muted);font-size:13px}
+    @media (max-width:980px){
+      .grid{grid-template-columns:1fr}
+      .logo{width:60px;height:60px;font-size:18px}
+      .avatar{width:100px;height:100px}
+      header{gap:12px;flex-direction:column;align-items:flex-start}
+      .controls{align-self:stretch;justify-content:space-between}
+    }
+    .card:hover{transform:translateY(-6px);box-shadow:0 28px 70px rgba(10,6,12,0.6)}
+    .chip:hover{transform:translateY(-4px)}
+    .section-title small{color:var(--muted);font-weight:600;font-size:12px}
+    @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="bg-particles" aria-hidden></div>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>SK</div>
+        <div>
+          <h1>SINCHANA K RAO</h1>
+          <div class="subtitle">Creative Computer Science Engineering Student</div>
+          <div class="contact-inline">Bengaluru, India • <a href="mailto:sinchanakrao2020@gmail.com" style="color:var(--muted);text-decoration:none">sinchanakrao2020@gmail.com</a> • <a href="https://www.linkedin.com/in/sinchana-k-rao-a00416326/" style="color:var(--muted);text-decoration:none" target="_blank" rel="noopener">linkedin.com/in/sinchana-k-rao-a00416326</a></div>
+        </div>
+      </div>
+
+      <div class="controls" role="toolbar" aria-label="Top controls">
+        <a class="btn resume" href="/mnt/data/Resumenew (1).pdf" download>⬇ Resume (PDF)</a>
+        <button class="btn ghost" id="themeToggle" aria-pressed="false" title="Toggle theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span id="themeLabel">Dark</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="grid" id="mainGrid">
+      <section>
+        <div class="card" aria-labelledby="profile-heading">
+          <div class="profile-row">
+            <img src="/mnt/data/img.jpg" alt="Sinchana" class="avatar" id="avatarImg" onerror="this.style.display='none';document.getElementById('fallbackAvatar').style.display='flex'">
+            <div id="fallbackAvatar" class="avatar fallback" style="display:none">SR</div>
+
+            <div>
+              <div id="profile-heading" class="name">Sinchana K Rao</div>
+              <div class="role">Computer Science Engineering Student • Author • Developer</div>
+
+              <div class="socials" aria-label="social links">
+                <a href="https://github.com/sinchana-2006" title="GitHub" target="_blank" rel="noopener noreferrer">
+                  <!-- GitHub icon -->
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.9.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.28-1.72-1.28-1.72-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.97.1-.75.4-1.26.73-1.55-2.56-.29-5.26-1.28-5.26-5.69 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.17 0 0 .97-.31 3.18 1.18a11.1 11.1 0 012.9-.39c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.63 1.65.23 2.87.11 3.17.75.81 1.2 1.84 1.2 3.1 0 4.42-2.71 5.39-5.29 5.67.41.36.78 1.06.78 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.68.8.56C20.71 21.39 24 17.08 24 12c0-6.27-5.23-11.5-12-11.5z"/>
+                  </svg>
+                </a>
+
+                <a href="https://www.linkedin.com/in/sinchana-k-rao-a00416326/" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <path d="M19 3A2 2 0 0121 5v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-9.75 7.5v6H8.25v-6H7V8.25h1.25V7.25c0-1.1.9-2 2-2h1.5v2.75H10c-.14 0-.25.11-.25.25v1.25h2.5V10.5h-2.5zM17 14.5v3h-1.75v-3c0-.97-.78-1.75-1.75-1.75S11.75 13.53 11.75 14.5v3H10v-6h1.75v.85c.62-.73 1.72-1.35 2.85-1.35 2.07 0 3.4 1.46 3.4 3.5z"/>
+                  </svg>
+                </a>
+
+                <a href="https://leetcode.com/u/sinchanakrao/" title="LeetCode" target="_blank" rel="noopener noreferrer">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                    <path d="M15.5 8.5L12 5L8.5 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 11L17 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19 19.5H5V16.5C5 13.5 8 12 12 12C16 12 19 13.5 19 16.5V19.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:18px">
+            <div class="section-title">Summary</div>
+            <p class="lead">Motivated and detail-oriented Computer Science Engineering student with a strong foundation in Python, Data Structures, and Web Development. I am actively expanding my expertise across frontend and backend technologies through certified courses, hands-on projects, and participation in major hackathons such as Adobe India, SIH, and Tech Triad. As an IEEE member, I consistently engage in technical learning, collaborative problem-solving, and innovation-driven environments. Beyond academics, I bring strengths in communication, leadership, and creativity—reflected in my writing, video editing, and design experience. I am passionate about continuous improvement, building real-world applications, and developing impactful digital solutions that merge technology with creativity.</p>
+          </div>
+
+          <div style="margin-top:16px">
+            <div class="section-title">Technical Skills</div>
+            <div class="chips" style="margin-top:10px">
+              <div class="chip">Python</div>
+              <div class="chip">Data Structures</div>
+              <div class="chip">HTML</div>
+              <div class="chip">CSS</div>
+              <div class="chip">JavaScript</div>
+              <div class="chip">SpringBoot</div>
+              <div class="chip">MATLAB</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px">
+            <div class="section-title">Training & Courses</div>
+            <ul>
+              <li>Introduction to Back-End Development — Meta (Coursera)</li>
+              <li>Data Structures & Algorithms in Python — Reinex</li>
+              <li>Front-end Web Development — HTML / CSS / JS (in progress)</li>
+              <li>Eight MATLAB courses — Academic training</li>
+              <li>HackerRank Python Badge</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:16px">
+            <div class="section-title">Key Achievements</div>
+            <ul>
+              <li>Participated in multiple hackathons including Adobe India, Smart India Hackathon (SIH), Tech Triad (DSU), and Capgemini Brand Quest.</li>
+              <li>Balanced rigorous coursework with creative projects like writing and video editing while completing certification courses.</li>
+              <li>Active IEEE member contributing to technical events, workshops, and community activities.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <div class="section-title">Education</div>
+          <p><strong>Dayananda Sagar University — B.Tech, Computer Science & Engineering</strong><br>Expected Graduation: October 2028</p>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <div class="section-title">Certifications & Events</div>
+          <ul>
+            <li>Introduction to Back-End Development — Meta (Coursera)</li>
+            <li>Data Structures & Algorithms in Python — Reinex</li>
+            <li>Eight MATLAB Courses – Academic technical training</li>
+            <li>HackerRank Python Badge</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="section-title">Languages</div>
+          <ul>
+            <li>English — Native</li>
+            <li>Hindi — Proficient</li>
+            <li>Kannada — Advanced</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="section-title">Memberships</div>
+          <p>IEEE Member</p>
+        </div>
+
+        <div class="card" style="margin-top:14px;text-align:center">
+          <div class="contact-row">sinchanakrao2020@gmail.com</div>
+          <div class="contact-row" style="margin-top:8px">+91 7204895765</div>
+
+          <div class="resume-wrap" style="margin-top:12px">
+            <div style="font-size:14px;color:var(--muted)">Download Resume</div>
+            <a class="btn resume" href="/mnt/data/Resumenew (1).pdf" download>⬇ Resume (PDF)</a>
+            <div style="font-size:12px;color:var(--muted)">Click icons to open profiles</div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div style="margin-top:20px;text-align:center;color:var(--muted)">Made with ♥ — Portfolio generated from your resume.</div>
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle with localStorage and accessible label
+    (function(){
+      const btn = document.getElementById('themeToggle');
+      const label = document.getElementById('themeLabel');
+      const root = document.documentElement;
+      const saved = localStorage.getItem('portfolio-theme');
+
+      function applyTheme(t){
+        if(t === 'light'){
+          root.style.setProperty('--rose-1','rgba(255,222,230,0.18)');
+          root.style.setProperty('--rose-2','rgba(255,190,210,0.10)');
+          root.style.setProperty('--bg-start','#fbf8fb');
+          root.style.setProperty('--bg-mid','#f6f6fb');
+          root.style.setProperty('--card-bg','rgba(255,255,255,0.96)');
+          root.style.setProperty('--card-border','rgba(190,150,160,0.08)');
+          root.style.setProperty('--muted','#6b7280');
+          root.style.setProperty('--text','#071027');
+          label.textContent = 'Light';
+          btn.setAttribute('aria-pressed','true');
+        } else {
+          root.style.setProperty('--rose-1','rgba(255,153,178,0.14)');
+          root.style.setProperty('--rose-2','rgba(255,122,162,0.12)');
+          root.style.setProperty('--bg-start','#0a0810');
+          root.style.setProperty('--bg-mid','#160b10');
+          root.style.setProperty('--card-bg','rgba(10,10,12,0.76)');
+          root.style.setProperty('--card-border','rgba(255,160,190,0.12)');
+          root.style.setProperty('--muted','#a6b3c0');
+          root.style.setProperty('--text','#f1f6fb');
+          label.textContent = 'Dark';
+          btn.setAttribute('aria-pressed','false');
+        }
+        localStorage.setItem('portfolio-theme', t);
+      }
+
+      applyTheme(saved || 'dark');
+
+      btn.addEventListener('click', ()=>{
+        const cur = localStorage.getItem('portfolio-theme') || 'dark';
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+      });
+    })();
+  </script>
+</body>
+</html>
